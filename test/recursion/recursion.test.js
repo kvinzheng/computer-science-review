@@ -9,5 +9,8 @@ describe('factorial', function(){
   });
   it('correctly computed 1! = 1', function(){
     expect(lib.factorial(1)).to.equal(1);
+  });
+  it('correctly computed 2! = 2', function(){
+    expect(lib.factorial(2)).to.equal(2);
   })
 })
