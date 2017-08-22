@@ -133,3 +133,26 @@ exports.split = function split(string, delimiter) {
     return temp.concat(split(newString, string));
   }
 }
+
+exports.reduce = function reduce(array, fn, initialValue){
+  let sum = initialValue;
+  if(array.length === 0){
+    return sum;
+  } else if (array.length === 1){
+    return fn(array[0], initialValue);
+  } else {
+    let accumulatedValue = fn(array[0], initialValue);
+    return reduce(array.slice(1), fn, accumulatedValue);
+  }
+}
+
+exports.indexOf = function indexOf(array, value, position = 0){
+  if(array[0] === undefined){
+    return -1;
+  } else if(array[0] === value){
+    return position;
+  } else {
+    position += 1;
+    return indexOf(array.slice(1),value,position);
+  }
+}
