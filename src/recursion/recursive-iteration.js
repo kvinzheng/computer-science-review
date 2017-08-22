@@ -71,3 +71,65 @@ exports.every = function every(array, fn) {
     return false;
   }
 }
+
+exports.some = function some(array, fn){
+  let arr = array;
+
+  if(arr.length === 0){
+    return false;
+  } else if(fn(arr[0]) === false){
+    return some(arr.slice(1), fn);
+  } else if(fn(arr[0]) === true){
+    return true;
+  }
+}
+
+exports.none = function none(array, fn){
+  let arr = array;
+
+  if(arr.length === 0){
+    return true;
+  } else if(!fn(arr[0])){
+    return none(arr.slice(1), fn);
+  } else {
+    return false;
+  }
+}
+
+exports.map = function map(array, fn){
+  let arr = array;
+
+  if(arr.length === 0){
+    return [];
+  }
+
+  return [fn(arr[0])].concat(map(arr.slice(1),fn));
+};
+
+exports.join = function join(array, string){
+  let arr = array;
+  let temp = '';
+
+  if(arr.length === 0) {
+    return '';
+  } else if(arr.length === 1){
+    return arr[0];
+  } else if (arr.length !== 0) {
+    temp = temp + arr[0] + string;
+  }
+
+  return temp.concat(join(arr.slice(1), string));
+}
+
+exports.split = function split(string, delimiter) {
+  let temp = [];
+  if (string.length === 0) {
+    return [];
+  } else if (string.indexOf(delimiter) === -1) {
+    return [string];
+  } else {
+    temp.push(string.substring(0,string.indexOf(delimiter)));
+    let newString = string.substring(string.indexOf(delimiter)+1);
+    return temp.concat(split(newString, string));
+  }
+}
