@@ -157,6 +157,13 @@ exports.indexOf = function indexOf(array, value, position = 0){
   }
 }
 
+exports.leftPad = function leftPad(string, number, delimiter) {
+  if (string.length >= number) {
+    return string;
+  };
+  return leftPad(delimiter + string, number, delimiter)
+}
+
 exports.flatten = function flatten(array){
   let temp = [];
 
@@ -167,7 +174,7 @@ exports.flatten = function flatten(array){
   if(Array.isArray(array[0])){
     temp = flatten(array[0]);
   } else {
-    console.log('what is array',array);
+    // console.log('what is array',array);
     temp = [array[0]];
   }
 
