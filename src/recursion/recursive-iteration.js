@@ -156,3 +156,20 @@ exports.indexOf = function indexOf(array, value, position = 0){
     return indexOf(array.slice(1),value,position);
   }
 }
+
+exports.flatten = function flatten(array){
+  let temp = [];
+
+  if(array.length === 0){
+    return [];
+  }
+
+  if(Array.isArray(array[0])){
+    temp = flatten(array[0]);
+  } else {
+    console.log('what is array',array);
+    temp = [array[0]];
+  }
+
+  return temp.concat(flatten(array.slice(1)));
+}
