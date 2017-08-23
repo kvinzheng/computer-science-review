@@ -1,43 +1,43 @@
-exports.max = function max(array){
+exports.max = function max(array) {
   let arr = array;
-  if (arr.length === 0){
+  if (arr.length === 0) {
     return undefined;
-  } else if(arr.length ===1){
+  } else if (arr.length === 1) {
     return arr[0];
   }
 
-  if(arr[0] > arr[1]){
-    arr.splice(1,1)
+  if (arr[0] > arr[1]) {
+    arr.splice(1, 1)
   } else {
-    arr.splice(0,1);
+    arr.splice(0, 1);
   }
   return max(arr);
 };
 
-exports.min = function min(array){
+exports.min = function min(array) {
   let arr = array;
-  if (arr.length === 0){
+  if (arr.length === 0) {
     return undefined;
-  } else if(arr.length === 1){
+  } else if (arr.length === 1) {
     return arr[0];
   }
 
-  if(arr[0] < arr[1]){
-    arr.splice(1,1);
+  if (arr[0] < arr[1]) {
+    arr.splice(1, 1);
   } else {
-    arr.splice(0,1);
+    arr.splice(0, 1);
   }
   return min(arr);
 }
 
-exports.filter = function filter(array,fn){
+exports.filter = function filter(array, fn) {
   let arr = array;
   let temp = [];
 
-  if(arr.length === 0){
+  if (arr.length === 0) {
     return [];
   } else {
-    if(fn(arr[0])){
+    if (fn(arr[0])) {
       temp.push(arr[0]);
     }
   }
@@ -45,14 +45,14 @@ exports.filter = function filter(array,fn){
   return temp.concat(filter(array.slice(1), fn));
 };
 
-exports.reject = function reject(array,fn){
+exports.reject = function reject(array, fn) {
   let arr = array;
   let temp = [];
 
-  if(arr.length === 0){
+  if (arr.length === 0) {
     return [];
   } else {
-    if(!fn(arr[0])){
+    if (!fn(arr[0])) {
       temp.push(arr[0])
     }
   }
@@ -63,56 +63,56 @@ exports.reject = function reject(array,fn){
 exports.every = function every(array, fn) {
   let arr = array;
 
-  if(arr.length === 0){
+  if (arr.length === 0) {
     return true;
-  } else if (fn(arr[0])){
+  } else if (fn(arr[0])) {
     return every(arr.slice(1), fn);
   } else {
     return false;
   }
 }
 
-exports.some = function some(array, fn){
+exports.some = function some(array, fn) {
   let arr = array;
 
-  if(arr.length === 0){
+  if (arr.length === 0) {
     return false;
-  } else if(fn(arr[0]) === false){
+  } else if (fn(arr[0]) === false) {
     return some(arr.slice(1), fn);
-  } else if(fn(arr[0]) === true){
+  } else if (fn(arr[0]) === true) {
     return true;
   }
 }
 
-exports.none = function none(array, fn){
+exports.none = function none(array, fn) {
   let arr = array;
 
-  if(arr.length === 0){
+  if (arr.length === 0) {
     return true;
-  } else if(!fn(arr[0])){
+  } else if (!fn(arr[0])) {
     return none(arr.slice(1), fn);
   } else {
     return false;
   }
 }
 
-exports.map = function map(array, fn){
+exports.map = function map(array, fn) {
   let arr = array;
 
-  if(arr.length === 0){
+  if (arr.length === 0) {
     return [];
   }
 
-  return [fn(arr[0])].concat(map(arr.slice(1),fn));
+  return [fn(arr[0])].concat(map(arr.slice(1), fn));
 };
 
-exports.join = function join(array, string){
+exports.join = function join(array, string) {
   let arr = array;
   let temp = '';
 
-  if(arr.length === 0) {
+  if (arr.length === 0) {
     return '';
-  } else if(arr.length === 1){
+  } else if (arr.length === 1) {
     return arr[0];
   } else if (arr.length !== 0) {
     temp = temp + arr[0] + string;
@@ -128,17 +128,17 @@ exports.split = function split(string, delimiter) {
   } else if (string.indexOf(delimiter) === -1) {
     return [string];
   } else {
-    temp.push(string.substring(0,string.indexOf(delimiter)));
-    let newString = string.substring(string.indexOf(delimiter)+1);
+    temp.push(string.substring(0, string.indexOf(delimiter)));
+    let newString = string.substring(string.indexOf(delimiter) + 1);
     return temp.concat(split(newString, string));
   }
 }
 
-exports.reduce = function reduce(array, fn, initialValue){
+exports.reduce = function reduce(array, fn, initialValue) {
   let sum = initialValue;
-  if(array.length === 0){
+  if (array.length === 0) {
     return sum;
-  } else if (array.length === 1){
+  } else if (array.length === 1) {
     return fn(array[0], initialValue);
   } else {
     let accumulatedValue = fn(array[0], initialValue);
@@ -146,14 +146,14 @@ exports.reduce = function reduce(array, fn, initialValue){
   }
 }
 
-exports.indexOf = function indexOf(array, value, position = 0){
-  if(array[0] === undefined){
+exports.indexOf = function indexOf(array, value, position = 0) {
+  if (array[0] === undefined) {
     return -1;
-  } else if(array[0] === value){
+  } else if (array[0] === value) {
     return position;
   } else {
     position += 1;
-    return indexOf(array.slice(1),value,position);
+    return indexOf(array.slice(1), value, position);
   }
 }
 
@@ -164,18 +164,17 @@ exports.leftPad = function leftPad(string, number, delimiter) {
   return leftPad(delimiter + string, number, delimiter)
 }
 
-exports.flatten = function flatten(array){
+exports.flatten = function flatten(array) {
   let temp = [];
 
-  if(array.length === 0){
+  if (array.length === 0) {
     return [];
   }
 
-  if(Array.isArray(array[0])){
-    temp = flatten(array[0]);
-  } else {
-    // console.log('what is array',array);
-    temp = [array[0]];
+  if (Array.isArray(array[0])) {
+    temp = flatten(array[0])
+  } else if (!Array.isArray(array[0])) {
+    temp = [array[0]]
   }
 
   return temp.concat(flatten(array.slice(1)));
