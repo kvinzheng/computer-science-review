@@ -60,4 +60,61 @@ SinglyLinkedList.prototype.clear = function (){
   this.length = 0;
 }
 
+SinglyLinkedList.prototype.shift = function (){
+  if (this.length === 0) {
+    return 0;
+  }
+
+  if(this.length >= 1) {
+    let temp = this.head;
+    this.head = this.head.next;
+    temp.next =  null;
+    this.length-- ;
+    return temp.val;
+  }
+}
+
+SinglyLinkedList.prototype.get = function(index){
+  if(index >= this.length){ return undefined; }
+  let getIndex = this._getNodeAt(index);
+
+  return getIndex.val;
+}
+
+SinglyLinkedList.prototype.remove = function(index){
+  if(!this.head) {
+    return undefined;
+  }
+  if(this.length === 1){
+    let value = this.head.val;
+    this.head = null;
+    this.tail = null;
+    this.length = 0 ;
+    return value;
+  }
+  let removedValue = this._getNodeAt(index);
+  let previousValue = this._getNodeAt(index-1);
+  let value = removedValue.val;
+  previousValue.next = removedValue.next;
+  removedValue.next= null;
+  this.length--;
+  return value;
+}
+
+SinglyLinkedList.prototype.reverse = function () {
+  let next;
+  let current = this.head;
+  let previous = null;
+
+  while(current){
+    next = current.next;
+    current.next = previous;
+    previous = current;
+    current = next;
+  }
+  this.head = previous;
+};
+
+
+
 module.exports = SinglyLinkedList;
