@@ -36,7 +36,7 @@ function merge(arr1, arr2) {
 function partition(arr, left, right){
   let pivotValue = arr[left];
   let pivotIndex = left;
-  for(let i = left+ 1; i <= right; i++){
+  for(let i = left + 1; i <= right; i++){
     if(arr[i] < pivotValue) {
       pivotIndex++;
       swap(arr, i, pivotIndex);
@@ -45,6 +45,7 @@ function partition(arr, left, right){
   swap(arr, left, pivotIndex);
   return pivotIndex;
 }
+
 module.exports = {
   swap,
   merge,

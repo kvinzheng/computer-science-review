@@ -39,7 +39,6 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
     quickSort(arr, p + 1, right);
   }
   return arr;
-
 }
 
 module.exports = {
