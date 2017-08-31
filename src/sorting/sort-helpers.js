@@ -19,20 +19,32 @@ function merge(arr1, arr2) {
   }
   return result.concat(arr1).concat(arr2);
 }
+//
+// function partition(arr, left, right) {
+//   let pivotValue = arr[left];
+//   let pivotIndex = left;
+//   for(let i = left + 1; i <= right; i++){
+//     if(arr[i] < pivotValue) {
+//       pivotIndex++;
+//       swap(arr, i, pivotIndex);
+//     }
+//   }
+//   swap(arr,left, pivotIndex);
+//   return pivotIndex;
+// }
 
-function partition(arr, left, right) {
+function partition(arr, left, right){
   let pivotValue = arr[left];
   let pivotIndex = left;
-  for(let i = left + 1; i <= right; i++){
+  for(let i = left+ 1; i <= right; i++){
     if(arr[i] < pivotValue) {
       pivotIndex++;
       swap(arr, i, pivotIndex);
     }
   }
-  swap(arr,left, pivotIndex);
+  swap(arr, left, pivotIndex);
   return pivotIndex;
 }
-
 module.exports = {
   swap,
   merge,
