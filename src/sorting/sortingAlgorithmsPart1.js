@@ -4,50 +4,40 @@ const swap = require('./sort-helpers').swap;
 
 function bubbleSort(arr) {
 
-  let isSorted = false;
-  let lastUnsorted = arr.length;
-  while (!isSorted) {
-    isSorted = true;
-    for (var i = 1; i < lastUnsorted; i++) {
-        if (arr[i-1] > arr[i]) {
-            isSorted = false;
-            [arr[i-1], arr[i]] = [arr[i], arr[i-1]];
-        }
+  let done = false;
+  while (!done) {
+    done = true;
+    for(let i = 1; i < arr.length; i++) {
+      if (arr[i-1] > arr[i]){
+        done = false;
+        swap(arr, i-1, i);
+      }
     }
-    lastUnsorted--;
   }
   return arr;
 }
-function selectionSort(array) {
-  for (let i = 0; i < array.length; i++) {
-    let minIndex = i;
 
-    for (let j = i + 1; j < array.length; j++) {
-      if (array[j] < array[minIndex]) {
+function selectionSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let minIndex = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[minIndex]) {
         minIndex = j;
       }
     }
-
-    if (minIndex !== i) {
-      let temp = array[minIndex];
-      array[minIndex] = array[i];
-      array[i] = temp;
-    }
+    swap(arr, i, minIndex);
   }
-  return array;
+  return arr;
 }
 
 function insertionSort(arr) {
-
-  for( let i = 1 ; i < arr.length; i++){
-    let key = arr[i];
-    let j = i - 1;
-
-    while( j >= 0 &&  key < arr[j] ){
-      [arr[j+1], arr[j]] = [arr[j], arr[j+1]];
-      j--;
+  for(let i = 0; i < arr.length ; i++) {
+    let current = arr[i];
+    let j;
+    for(j = i-1; j >= 0 && arr[j] > current; j--){
+      arr[j+1] = arr[j];
     }
-
+    arr[j+1] = current;
   }
   return arr;
 }
