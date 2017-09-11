@@ -45,7 +45,7 @@ BinTree.prototype.insertIteratively = function(value) {
 BinTree.prototype.insertRecursively = function(value,current) {
   let startNode = current || this.root;
 
-  if (value === startNode.value) {
+  if (startNode && value === startNode.value) {
     return 'duplicate!';
   }
 
@@ -75,11 +75,40 @@ BinTree.prototype.insertRecursively = function(value,current) {
 };
 
 BinTree.prototype.containsIteratively = function(value) {
+  let current = this.root;
+  let isFound = false;
+  while(current && !isFound){
+    if(current.value === value){
+      return isFound = true;
+    } else if (value < current.value) {
+      current = current.left;
+    } else if (value > current.value) {
+      current = current.right;
+    }
+  }
 
+  return false;
 };
 
 BinTree.prototype.containsRecursively = function(value,current) {
 
+  current = current || this.root;
+  
+  if(current.value === value) {
+    return true;
+  } else if (value < current.value) {
+    if(current.left){
+      return this.containsRecursively(value, current.left);
+    } else {
+      return false;
+    }
+  } else if (value > current.value) {
+    if(current.right) {
+      return this.containsRecursively(value, current.right);
+    } else {
+      return false;
+    }
+  }
 };
 
 BinTree.prototype.breadthFirstSearch = function() {
