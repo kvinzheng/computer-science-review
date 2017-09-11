@@ -43,7 +43,35 @@ BinTree.prototype.insertIteratively = function(value) {
 };
 
 BinTree.prototype.insertRecursively = function(value,current) {
-  
+  let startNode = current || this.root;
+
+  if (value === startNode.value) {
+    return 'duplicate!';
+  }
+
+  if(startNode === null){
+    this.root = new Node(value);
+    return this;
+  } else {
+      if(value < startNode.value) {
+        if(startNode.left === null) {
+          startNode.left = new Node(value);
+          return this;
+        }
+        else {
+          return this.insertRecursively(value, startNode.left)
+        }
+      }
+      else if (value > startNode.value) {
+        if(startNode.right === null) {
+          startNode.right = new Node(value);
+          return this;
+        }
+        else {
+          return this.insertRecursively(value, startNode.right);
+        }
+      }
+  }
 };
 
 BinTree.prototype.containsIteratively = function(value) {

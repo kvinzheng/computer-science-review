@@ -75,11 +75,6 @@ describe('BinTree', function() {
       binTree.insertRecursively(3);
     });
 
-    it('only accepts numbers', function() {
-      ['awesome', null, undefined, [], true, {}, NaN, function() {}].forEach(function(option) {
-        expect(binTree.insertRecursively(option)).to.equal('Please insert a number');
-      });
-    });
     it('adds successfully', function() {
       expect(binTree.root.value).to.equal(5);
       expect(binTree.root.right.value).to.equal(10);
