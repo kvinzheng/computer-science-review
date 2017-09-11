@@ -93,7 +93,7 @@ BinTree.prototype.containsIteratively = function(value) {
 BinTree.prototype.containsRecursively = function(value,current) {
 
   current = current || this.root;
-  
+
   if(current.value === value) {
     return true;
   } else if (value < current.value) {
@@ -112,7 +112,22 @@ BinTree.prototype.containsRecursively = function(value,current) {
 };
 
 BinTree.prototype.breadthFirstSearch = function() {
+  let queue = [], data = []
+  let current = this.root;
+  queue.push(current);
 
+  while(queue.length) {
+    current = queue.shift();
+    data.push(current.value);
+
+    if(current.left) {
+      queue.push(current.left);
+    }
+    if(current.right) {
+      queue.push(current.right);
+    }
+  }
+  return data;
 };
 
 // DEPTH FIRST SEARCH (Pre / In / Post Order)
