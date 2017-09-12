@@ -148,7 +148,21 @@ BinTree.prototype.breadthFirstSearch = function() {
 // visualizing the call stack using the chrome dev tools or just drawing it will help a lot with this!
 
 BinTree.prototype.DFSPreOrder = function() {
+  let data = [];
+  let current = this.root;
+  function traverse(node) {
+    data.push(node.value);
+    if(node.left) {
+      traverse(node.left);
+    }
+    if(node.right) {
+      traverse(node.right);
+    }
+  }
 
+  traverse(current);
+
+  return data;
 };
 
 BinTree.prototype.DFSInOrder = function() {
