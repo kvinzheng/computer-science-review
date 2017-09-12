@@ -196,16 +196,34 @@ BinTree.prototype.DFSPostOrder = function() {
   return data;
 };
 
-BinTree.prototype.size = function() {
 
+BinTree.prototype.size = function() {
+  return this.breadthFirstSearch().length;
 };
 
 BinTree.prototype.findLowest = function() {
-
+  let current = this.root;
+// this can be done with an IIFE + Ternary
+  function search(node) {
+    if(node.left){
+      return search(node.left)
+    } else {
+      return node.value;
+    }
+  }
+  return search(current);
 };
 
 BinTree.prototype.findHighest = function() {
-
+  let current = this.root;
+  function search(node) {
+    if(node.right){
+      return search(node.right);
+    } else {
+      return node.value;
+    }
+  }
+  return search(current);
 };
 
 // private helper method for remove
