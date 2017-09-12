@@ -161,16 +161,39 @@ BinTree.prototype.DFSPreOrder = function() {
   }
 
   traverse(current);
-
   return data;
 };
 
 BinTree.prototype.DFSInOrder = function() {
-
+  let data = [];
+  let current = this.root;
+  function traverse(node) {
+    if (node.left) {
+      traverse(node.left)
+    }
+    data.push(node.value);
+    if (node.right) {
+      traverse(node.right);
+    }
+  }
+  traverse(current);
+  return data;
 };
 
 BinTree.prototype.DFSPostOrder = function() {
-
+  let data = [];
+  let current = this.root;
+  function traverse(node) {
+    if (node.left) {
+      traverse(node.left);
+    }
+    if(node.right){
+      traverse(node.right);
+    }
+    data.push(node.value);
+  }
+  traverse(current);
+  return data;
 };
 
 BinTree.prototype.size = function() {
