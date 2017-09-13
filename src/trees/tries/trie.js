@@ -37,7 +37,7 @@ Trie.prototype.learn = function(word, index) {
   }
 
   let char = word[index];
-
+  // console.log('char=', char);
   if (this.characters[char]) {
     this.characters[char].learn(word, index + 1);
   } else {
@@ -82,7 +82,19 @@ Trie.prototype.getWords = function(words, currentWord) {
                    the word passed in is not a member of this Trie.
 */
 Trie.prototype.find = function(word, index) {
+  if(index === undefined) {
+    index = 0;
+  }
 
+  if(index === word.length) {
+    return this;
+  }
+  let char = word[index];
+  if(this.characters[char]){
+    return this.characters[char].find(word, index + 1);
+  } else {
+    return ;
+  }
 
 };
 
