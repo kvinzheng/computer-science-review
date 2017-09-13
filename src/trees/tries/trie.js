@@ -119,7 +119,12 @@ Trie.prototype.autoComplete = function(prefix) {
   // This function will return all completions
   // for a given prefix.
   // It should use find and getWords.
-
+  let sub = this.find(prefix);
+  if(sub){
+    return sub.getWords([], prefix);
+  } else {
+    return [];
+  }
 };
 
 module.exports = Trie;
