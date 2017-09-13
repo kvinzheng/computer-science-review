@@ -67,7 +67,19 @@ Trie.prototype.getWords = function(words, currentWord) {
   // contained in this Trie.
   // it will use currentWord as a prefix,
   // since a Trie doesn't know about its parents.
+  words = words || [];
 
+  currentWord = currentWord || '';
+
+  if(this.isWord === true) {
+    words.push(currentWord);
+  }
+  for(let word in this.characters) {
+    let cur = currentWord + word;
+    this.characters[word].getWords(words, cur);
+  }
+
+  return words;
 };
 
 /*
