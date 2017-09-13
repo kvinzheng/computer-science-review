@@ -26,23 +26,19 @@ function Trie (isWord, character) {
   @return undefined
 */
 Trie.prototype.learn = function(word, index) {
-  //if we didn't define index;
-  if (index === undefined) {
+  if(index === undefined){
     index = 0;
   }
-  //base case
-  if (word.length === index) {
+  if(word.length === index){
     this.isWord = true;
-    return
+    return;
   }
-
   let char = word[index];
-  // console.log('char=', char);
-  if (this.characters[char]) {
-    this.characters[char].learn(word, index + 1);
+  if(this.character[char]){
+    return this.characters[char].learn(word, index + 1);
   } else {
     this.characters[char] = new Trie(null, char);
-    this.characters[char].learn(word, index + 1);
+    return this.characters[char].learn(word, index + 1);
   }
 
 };
@@ -67,19 +63,7 @@ Trie.prototype.getWords = function(words, currentWord) {
   // contained in this Trie.
   // it will use currentWord as a prefix,
   // since a Trie doesn't know about its parents.
-  words = words || [];
 
-  currentWord = currentWord || '';
-
-  if(this.isWord === true) {
-    words.push(currentWord);
-  }
-  for(let word in this.characters) {
-    let cur = currentWord + word;
-    this.characters[word].getWords(words, cur);
-  }
-
-  return words;
 };
 
 /*
