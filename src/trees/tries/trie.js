@@ -6,7 +6,7 @@
   this node in the Trie represents a word.
 
   @param {boolean} isWord - a boolean which should only be true if this node is a word.
-  @param {string} character - the character this node represents
+  @param {string} character - the character thi
 */
 function Trie (isWord, character) {
   this.characters = {};
@@ -26,6 +26,24 @@ function Trie (isWord, character) {
   @return undefined
 */
 Trie.prototype.learn = function(word, index) {
+  //if we didn't define index;
+  if (index === undefined) {
+    index = 0;
+  }
+  //base case
+  if (word.length === index) {
+    this.isWord = true;
+    return
+  }
+
+  let char = word[index];
+
+  if (this.characters[char]) {
+    this.characters[char].learn(word, index + 1);
+  } else {
+    this.characters[char] = new Trie(null, char);
+    this.characters[char].learn(word, index + 1);
+  }
 
 };
 

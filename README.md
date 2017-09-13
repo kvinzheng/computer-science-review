@@ -10,3 +10,8 @@ Quick Sort: time complexity is O(n^2), worst case happens when the array is alre
 **Selection Sort**: time complexity is O(n^2). The splace complexity is O(1);
 
 **Insertion Sort**: time complexity is O(n^2). The space complexity is O(1);
+
+
+## 9/13/2017
+
+The tries is a tree where each node(vertex) represents a single word or a prefix.

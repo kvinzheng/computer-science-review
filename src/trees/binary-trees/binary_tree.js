@@ -228,7 +228,10 @@ BinTree.prototype.findHighest = function() {
 
 // private helper method for remove
 BinTree.prototype._countChildren = function(node) {
-
+  let count = 0;
+  if(node.left !== null) count ++;
+  if(node.right !== null) count ++;
+  return count;
 };
 
 BinTree.prototype.remove = function(value) {
