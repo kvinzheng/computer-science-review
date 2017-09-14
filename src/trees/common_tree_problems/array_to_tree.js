@@ -15,18 +15,18 @@ var TreeNode = function(value, left, right) {
 
 function arrayToTree(array) {
   let newArray = array;
-  return insert(null, newArray, 0, array.length);
+  return insert(null, array, 0, array.length);
 }
 
-function insert(tree, array, start, end) {
+function insert(node, array, start, end) {
 
-  if (start < end) {
-    let node = new TreeNode(array[start]);
+  if(start < end) {
+    node = new TreeNode(array[start], null, null);
     node.left = insert(node.left, array, start * 2 + 1, end);
     node.right = insert(node.right, array, start * 2 + 2, end);
     return node;
   }
-  return;
+  return undefined;
 }
 module.exports = {
   arrayToTree,
