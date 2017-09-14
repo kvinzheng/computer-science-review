@@ -13,7 +13,18 @@ var TreeNode = function(value, left, right) {
   this.right = right;
 };
 
-function arrayToTree() {
-
+function arrayToTree(array) {
+  let newArray = array;
+  return insert(null, newArray, 0, array.length);
 }
-module.exports = arrayToTree;
+
+function insert(tree, array, start, end) {
+  if (start < end) {
+    var tree = new TreeNode(array[start]);
+    tree.left = insert(tree.left, array, 2 * start + 1, end);
+    tree.right = insert(tree.right, array, 2 * start + 2, end);
+    return tree;
+  }
+  return;
+}
+module.exports = { arrayToTree, TreeNode };
