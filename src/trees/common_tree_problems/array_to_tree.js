@@ -19,12 +19,16 @@ function arrayToTree(array) {
 }
 
 function insert(tree, array, start, end) {
+
   if (start < end) {
-    var tree = new TreeNode(array[start]);
-    tree.left = insert(tree.left, array, 2 * start + 1, end);
-    tree.right = insert(tree.right, array, 2 * start + 2, end);
-    return tree;
+    let node = new TreeNode(array[start]);
+    node.left = insert(node.left, array, start * 2 + 1, end);
+    node.right = insert(node.right, array, start * 2 + 2, end);
+    return node;
   }
   return;
 }
-module.exports = { arrayToTree, TreeNode };
+module.exports = {
+  arrayToTree,
+  TreeNode
+};
