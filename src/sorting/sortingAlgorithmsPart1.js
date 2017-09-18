@@ -23,7 +23,7 @@ function selectionSort(arr) {
     for (let j = i + 1; j < arr.length; j++) {
       if (arr[j] < arr[minIndex]) {
         minIndex = j;
-      }Y
+      }
     }
     swap(arr, i, minIndex);
   }
